@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import "./ShoppingPage.css";
+import ProductList from "../components/ProductList";
 
 function ShoppingPage() {
   const [products, setProducts] = useState([]);
-  const [count, setCount] = useState(0);
 
   useEffect(() => {
     getProduct();
@@ -27,17 +28,12 @@ function ShoppingPage() {
   const productList = products.map((item, index) => {
     return (
       <>
-        <div key={item.id} className="shopping-item">
-          <img src={item.productImg} />
-          <div>{item.productName}</div>
-          <div>Price: {item.productPrice}฿</div>
-          <div className="shopping-counter">
-            <button onClick={() => setCount(count - 1)}>-</button>
-            <div>{count}</div>
-            <button onClick={() => setCount(count + 1)}>+</button>
-          </div>
-          <button>ADD TO CART</button>
-        </div>
+        <ProductList
+          id={item.id}
+          productImg={item.productImg}
+          productName={item.productName}
+          productPrice={item.productPrice}
+        />
       </>
     );
   });
