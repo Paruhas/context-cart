@@ -2,18 +2,16 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-function HomePage() {
+function ShoppingPage() {
   return (
     <>
       <Navbar />
       <div className="app-content">
-        <h1>WELCOME</h1>
-        <br />
-        <h1>THIS IS HOMEPAGE</h1>
+        <h1>THIS IS ShoppingPage</h1>
       </div>
       <Footer />
     </>
   );
 }
 
-export default HomePage;
+export default ShoppingPage;

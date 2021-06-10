@@ -1,22 +1,8 @@
 import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-
-const ShoppingPage = () => {
-  return (
-    <div>
-      <h1>THIS IS ShoppingPage</h1>
-    </div>
-  );
-};
-
-const page002 = () => {
-  return (
-    <div>
-      <h1>THIS IS PAGE002</h1>
-    </div>
-  );
-};
+import ShoppingPage from "./pages/ShoppingPage";
+import Page002 from "./pages/Page002";
 
 function App() {
   return (
@@ -24,7 +10,7 @@ function App() {
       <Switch>
         <Route exact path={"/"} component={HomePage} />
         <Route exact path={"/ShoppingPage"} component={ShoppingPage} />
-        <Route exact path={"/page002"} component={page002} />
+        <Route exact path={"/page002"} component={Page002} />
       </Switch>
     </BrowserRouter>
   );

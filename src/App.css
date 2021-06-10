@@ -1,7 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 #root {
@@ -9,14 +8,11 @@
   height: 100vh;
 }
 
-.app-content {
-  padding: 90px 0px 15px;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
+* {
+  box-sizing: border-box;
 }
 
-.app-content-homePage {
+.app-content {
   height: 100%;
   padding: 90px 0px 15px;
   max-width: 1200px;

@@ -7,7 +7,7 @@ function Navbar() {
     <header>
       <div className="app-nav-wrap-menu">
         <div className="app-navigator-link">
-          <Link>HomePage</Link>
+          <Link to="/">HomePage</Link>
           {"|"}
           <Link to="/ShoppingPage">ShoppingPage</Link>
           {"|"}
