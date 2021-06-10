@@ -1,0 +1,56 @@
+header {
+  height: 75px;
+  background-color: #ffb4b4;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  box-shadow: 0px 5px 5px #ff9292;
+}
+
+.app-nav-wrap-menu {
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+  justify-content: space-between;
+  padding: 0px 10px;
+}
+
+.app-navigator-link {
+  display: flex;
+  column-gap: 10px;
+}
+
+.app-navigator-link > a {
+  text-decoration: none;
+  color: black;
+}
+.app-navigator-link > a:hover {
+  color: rgb(144, 144, 144);
+}
+
+.app-nav-wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-logo,
+.app-cart-logo {
+  padding: 10px;
+}
+
+.app-search {
+  padding: 10px 0px;
+  width: 30%;
+}
+
+.app-search-input {
+  padding: 10px;
+  width: 90%;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+}
