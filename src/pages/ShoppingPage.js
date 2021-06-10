@@ -27,14 +27,12 @@ function ShoppingPage() {
 
   const productList = products.map((item, index) => {
     return (
-      <>
-        <ProductList
-          id={item.id}
-          productImg={item.productImg}
-          productName={item.productName}
-          productPrice={item.productPrice}
-        />
-      </>
+      <ProductList
+        key={item.id}
+        productImg={item.productImg}
+        productName={item.productName}
+        productPrice={item.productPrice}
+      />
     );
   });
 
