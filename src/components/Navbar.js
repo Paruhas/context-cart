@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
+import { CartContext } from "../contexts/cartContext";
 
 import Modal from "react-modal";
 const customStyles = {
@@ -24,6 +25,29 @@ function Navbar() {
   const closeCartModal = () => {
     setCartModalIsOpen(false);
   };
+
+  const { cart, setCart } = useContext(CartContext);
+
+  console.log(cart, "nav");
+
+  const cartElements = cart.map((item, index) => {
+    console.log(item);
+    return (
+      <div className="app-cart-items-inside-list" key={item.id}>
+        <img src={item.img} alt="" />
+        <div className="app-cart-items-inside-list-detail-grp">
+          <div className="app-cart-items-inside-list-detail">
+            <span>{item.name}</span>
+            <span>{item.price}</span>
+          </div>
+          <div className="app-cart-items-inside-list-detail">
+            <span>x {item.count.amount}</span>
+            <span>{item.count.totalPrice}</span>
+          </div>
+        </div>
+      </div>
+    );
+  });
 
   return (
     <>
@@ -50,7 +74,9 @@ function Navbar() {
             />
           </div>
           <div className="app-cart-logo">
-            <p onClick={openCartModal}>{"0"} Cart</p>
+            <p onClick={openCartModal}>
+              {cart.length > 9 ? "9+" : cart.length} Cart
+            </p>
           </div>
         </div>
       </header>
@@ -63,19 +89,7 @@ function Navbar() {
       >
         <div className="app-cart-items">
           <div className="app-cart-items-inside">
-            <div className="app-cart-items-inside-list">
-              <img src="http://placeimg.com/640/480/nightlife" alt="" />
-              <div className="app-cart-items-inside-list-detail-grp">
-                <div className="app-cart-items-inside-list-detail">
-                  <span>ProductName</span>
-                  <span>ProductPrice</span>
-                </div>
-                <div className="app-cart-items-inside-list-detail">
-                  <span>x 1</span>
-                  <span>100</span>
-                </div>
-              </div>
-            </div>
+            {cartElements}
             <button onClick={closeCartModal}>CHECK OUT</button>
           </div>
         </div>

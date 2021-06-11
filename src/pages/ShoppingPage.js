@@ -29,6 +29,7 @@ function ShoppingPage() {
     return (
       <ProductList
         key={item.id}
+        productId={item.id}
         productImg={item.productImg}
         productName={item.productName}
         productPrice={item.productPrice}
