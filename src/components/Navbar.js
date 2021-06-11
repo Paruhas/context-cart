@@ -85,6 +85,7 @@ function Navbar() {
         isOpen={cartModalIsOpen}
         onRequestClose={closeCartModal}
         style={customStyles}
+        ariaHideApp={false}
         contentLabel="Cart Modal"
       >
         <div className="app-cart-items">
