@@ -27,8 +27,74 @@ function Navbar() {
   };
 
   const { cart, setCart } = useContext(CartContext);
-
   console.log(cart, "nav");
+
+  const increaseItem = (inProduct) => {
+    console.log(inProduct);
+    try {
+      const findProductInCart = cart.findIndex((cartItem, index) => {
+        // console.log(cartItem.id, item.productId);
+        return cartItem.id === inProduct.id;
+      });
+      console.log(findProductInCart);
+
+      const newCart = cart.filter((filItem, filIndex) => {
+        return filItem.id !== inProduct.id;
+      });
+      setCart([
+        ...newCart,
+        (cart[findProductInCart] = {
+          id: inProduct.id,
+          name: inProduct.name,
+          price: inProduct.price,
+          img: inProduct.img,
+          count: {
+            amount: cart[findProductInCart].count.amount + 1,
+            totalPrice:
+              cart[findProductInCart].count.totalPrice + inProduct.price * 1,
+          },
+        }),
+      ]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const decreaseItem = (deProduct) => {
+    console.log(deProduct);
+    try {
+      const findProductInCart = cart.findIndex((cartItem, index) => {
+        // console.log(cartItem.id, item.productId);
+        return cartItem.id === deProduct.id;
+      });
+      console.log(findProductInCart);
+
+      const newCart = cart.filter((filItem, filIndex) => {
+        return filItem.id !== deProduct.id;
+      });
+
+      if (cart[findProductInCart].count.amount === 1) {
+        setCart([...newCart]);
+      } else {
+        setCart([
+          ...newCart,
+          (cart[findProductInCart] = {
+            id: deProduct.id,
+            name: deProduct.name,
+            price: deProduct.price,
+            img: deProduct.img,
+            count: {
+              amount: cart[findProductInCart].count.amount - 1,
+              totalPrice:
+                cart[findProductInCart].count.totalPrice - deProduct.price * 1,
+            },
+          }),
+        ]);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const checkoutButtonElements =
     cart.length === 0 ? null : (
@@ -42,7 +108,7 @@ function Navbar() {
       </div>
     ) : (
       cart.map((item, index) => {
-        console.log(item);
+        // console.log(item);
         return (
           <div className="app-cart-items-inside-list" key={item.id}>
             <img src={item.img} alt="" />
@@ -52,7 +118,21 @@ function Navbar() {
                 <span>{item.price}</span>
               </div>
               <div className="app-cart-items-inside-list-detail">
-                <span>x {item.count.amount}</span>
+                <span>
+                  <button
+                    style={{ padding: "3px" }}
+                    onClick={() => increaseItem(item)}
+                  >
+                    +
+                  </button>{" "}
+                  {item.count.amount}{" "}
+                  <button
+                    style={{ padding: "3px" }}
+                    onClick={() => decreaseItem(item)}
+                  >
+                    -
+                  </button>
+                </span>
                 <span>{item.count.totalPrice}</span>
               </div>
             </div>
