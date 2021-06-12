@@ -30,24 +30,36 @@ function Navbar() {
 
   console.log(cart, "nav");
 
-  const cartElements = cart.map((item, index) => {
-    console.log(item);
-    return (
-      <div className="app-cart-items-inside-list" key={item.id}>
-        <img src={item.img} alt="" />
-        <div className="app-cart-items-inside-list-detail-grp">
-          <div className="app-cart-items-inside-list-detail">
-            <span>{item.name}</span>
-            <span>{item.price}</span>
-          </div>
-          <div className="app-cart-items-inside-list-detail">
-            <span>x {item.count.amount}</span>
-            <span>{item.count.totalPrice}</span>
-          </div>
-        </div>
-      </div>
+  const checkoutButtonElements =
+    cart.length === 0 ? null : (
+      <button onClick={closeCartModal}>CHECK OUT</button>
     );
-  });
+
+  const cartElements =
+    cart.length === 0 ? (
+      <div className="app-cart-items-inside-list">
+        <div>NO ITEM IN CART</div>
+      </div>
+    ) : (
+      cart.map((item, index) => {
+        console.log(item);
+        return (
+          <div className="app-cart-items-inside-list" key={item.id}>
+            <img src={item.img} alt="" />
+            <div className="app-cart-items-inside-list-detail-grp">
+              <div className="app-cart-items-inside-list-detail">
+                <span>{item.name}</span>
+                <span>{item.price}</span>
+              </div>
+              <div className="app-cart-items-inside-list-detail">
+                <span>x {item.count.amount}</span>
+                <span>{item.count.totalPrice}</span>
+              </div>
+            </div>
+          </div>
+        );
+      })
+    );
 
   return (
     <>
@@ -91,7 +103,7 @@ function Navbar() {
         <div className="app-cart-items">
           <div className="app-cart-items-inside">
             {cartElements}
-            <button onClick={closeCartModal}>CHECK OUT</button>
+            {checkoutButtonElements}
           </div>
         </div>
       </Modal>
