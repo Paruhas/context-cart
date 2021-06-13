@@ -30,67 +30,105 @@ function Navbar() {
   console.log(cart, "nav");
 
   const increaseItem = (inProduct) => {
-    console.log(inProduct);
+    // console.log(inProduct);
     try {
-      const findProductInCart = cart.findIndex((cartItem, index) => {
-        // console.log(cartItem.id, item.productId);
-        return cartItem.id === inProduct.id;
-      });
-      console.log(findProductInCart);
+      const newCart = [...cart];
+      // console.log(newCart);
 
-      const newCart = cart.filter((filItem, filIndex) => {
-        return filItem.id !== inProduct.id;
+      newCart.map((cartItem) => {
+        // console.log(cartItem.id === item.productId);
+        if (cartItem.id === inProduct.id) {
+          cartItem.count.amount = cartItem.count.amount + 1;
+          cartItem.count.totalPrice =
+            cartItem.count.totalPrice + inProduct.price * 1;
+        }
+        return cartItem;
       });
-      setCart([
-        ...newCart,
-        (cart[findProductInCart] = {
-          id: inProduct.id,
-          name: inProduct.name,
-          price: inProduct.price,
-          img: inProduct.img,
-          count: {
-            amount: cart[findProductInCart].count.amount + 1,
-            totalPrice:
-              cart[findProductInCart].count.totalPrice + inProduct.price * 1,
-          },
-        }),
-      ]);
+
+      setCart([...newCart]);
+
+      // // ถ้าเก่า ทำให้ตำแหน่งมันไม่เหมือนเดิม
+      // const findProductInCart = cart.findIndex((cartItem, index) => {
+      //   // console.log(cartItem.id, item.productId);
+      //   return cartItem.id === inProduct.id;
+      // });
+      // console.log(findProductInCart);
+
+      // const newCart = cart.filter((filItem, filIndex) => {
+      //   return filItem.id !== inProduct.id;
+      // });
+      // setCart([
+      //   ...newCart,
+      //   (cart[findProductInCart] = {
+      //     id: inProduct.id,
+      //     name: inProduct.name,
+      //     price: inProduct.price,
+      //     img: inProduct.img,
+      //     count: {
+      //       amount: cart[findProductInCart].count.amount + 1,
+      //       totalPrice:
+      //         cart[findProductInCart].count.totalPrice + inProduct.price * 1,
+      //     },
+      //   }),
+      // ]);
     } catch (error) {
       console.log(error);
     }
   };
 
   const decreaseItem = (deProduct) => {
-    console.log(deProduct);
+    // console.log(deProduct);
     try {
-      const findProductInCart = cart.findIndex((cartItem, index) => {
-        // console.log(cartItem.id, item.productId);
-        return cartItem.id === deProduct.id;
-      });
-      console.log(findProductInCart);
+      let newCart = [...cart];
+      // console.log(newCart);
 
-      const newCart = cart.filter((filItem, filIndex) => {
-        return filItem.id !== deProduct.id;
-      });
-
-      if (cart[findProductInCart].count.amount === 1) {
-        setCart([...newCart]);
+      if (deProduct.count.amount === 1) {
+        newCart = newCart.filter((cartItem) => {
+          return cartItem.id !== deProduct.id;
+        });
       } else {
-        setCart([
-          ...newCart,
-          (cart[findProductInCart] = {
-            id: deProduct.id,
-            name: deProduct.name,
-            price: deProduct.price,
-            img: deProduct.img,
-            count: {
-              amount: cart[findProductInCart].count.amount - 1,
-              totalPrice:
-                cart[findProductInCart].count.totalPrice - deProduct.price * 1,
-            },
-          }),
-        ]);
+        newCart.map((cartItem) => {
+          // console.log(cartItem.id === item.productId);
+          if (cartItem.id === deProduct.id) {
+            cartItem.count.amount = cartItem.count.amount - 1;
+            cartItem.count.totalPrice =
+              cartItem.count.totalPrice - deProduct.price * 1;
+          }
+          return cartItem;
+        });
       }
+
+      setCart([...newCart]);
+
+      // // ถ้าเก่า ทำให้ตำแหน่งมันไม่เหมือนเดิม
+      // const findProductInCart = cart.findIndex((cartItem, index) => {
+      //   // console.log(cartItem.id, item.productId);
+      //   return cartItem.id === deProduct.id;
+      // });
+      // console.log(findProductInCart);
+
+      // const newCart = cart.filter((filItem, filIndex) => {
+      //   return filItem.id !== deProduct.id;
+      // });
+
+      // if (cart[findProductInCart].count.amount === 1) {
+      //   setCart([...newCart]);
+      // } else {
+      //   setCart([
+      //     ...newCart,
+      //     (cart[findProductInCart] = {
+      //       id: deProduct.id,
+      //       name: deProduct.name,
+      //       price: deProduct.price,
+      //       img: deProduct.img,
+      //       count: {
+      //         amount: cart[findProductInCart].count.amount - 1,
+      //         totalPrice:
+      //           cart[findProductInCart].count.totalPrice - deProduct.price * 1,
+      //       },
+      //     }),
+      //   ]);
+      // }
     } catch (error) {
       console.log(error);
     }
