@@ -1,0 +1,55 @@
+.shopping-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  row-gap: 20px;
+}
+
+.shopping-item {
+  width: 300px;
+  border: 1px solid #ff9292;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.shopping-item > img {
+  width: 100%;
+}
+
+.shopping-item > button {
+  padding: 10px;
+  background-color: #ffdcdc;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 7px;
+  width: 50%;
+  align-self: center;
+}
+
+.shopping-item > button:hover {
+  background-color: #ff9292;
+}
+
+.shopping-counter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.shopping-counter > button {
+  padding: 5px;
+  width: 40px;
+}
+
+.shopping-counter > div {
+  padding: 5px;
+  width: 50px;
+  background-color: white;
+  border: 1px solid black;
+  border-left: none;
+  border-right: none;
+}
